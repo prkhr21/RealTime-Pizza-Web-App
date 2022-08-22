@@ -1,0 +1,4 @@
+Create dictonary structure. - done
+Create NPM project & install all dependencies.
+Crerate Express server - create a server.js file 
+Git setup & first commit
