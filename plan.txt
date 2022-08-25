@@ -20,3 +20,6 @@ Add to cart functionality -
 Create login page with route
 Create register page with route
 Build register CRUD
+    dependencies express-flash express-session dotenv
+Build login using passport
+    Install dependencies passport passport-local express-session

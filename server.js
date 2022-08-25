@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 const MongoDbStore = require('connect-mongo')
 const session = require('express-session')
 const flash = require('express-flash')
+const passport = require('passport')
 
 // Database connection
 const url = 'mongodb://localhost/realtime_pizza';
@@ -26,11 +27,11 @@ connection.once('open', () => {
     console.log('connection failed...');
 })
 
-// Session store
-// let mongoStore = new MongoDbStore({
-//     mongooseConnection: connection,
-//     collection: 'sessions'
-// })
+// Assets
+app.use(express.static('public'))
+app.use(flash())
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 
 // Session config
 app.use(session({
@@ -43,15 +44,17 @@ app.use(session({
     cookie: {maxAge: 1000 * 60 * 60 * 24} // 24 hours
 }))
 
-app.use(flash())
 
-// Assets
-app.use(express.static('public'))
-app.use(express.json())
+// Passport config
+const passportInit = require('./app/config/passport')
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
 
-// Global Middleware
-app.use((req, res, next) => {
+// global middleware
+app.use((req, res, next) =>{
     res.locals.session = req.session
+    res.locals.user = req.user
     next()
 })
 
