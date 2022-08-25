@@ -2,4 +2,21 @@ Create dictonary structure. - done
 Create NPM project & install all dependencies.
 Crerate Express server - create a server.js file 
 Git setup & first commit
-Install Laravel Mix
+Install Laravel Mix - Setup js & scss
+Install tailwind css
+Create Homepage using HTML & CSS
+Create cart page - order summary section & empty cart section
+Move routes to route files
+Create dedicated controller
+Add to cart functionality - 
+    fetch all pizzas from db & show on home page
+    create menu model & put dummy data
+    connect to mongodb
+    use connect-mongo for session store
+        dependencies
+            mongoose, express-session, connext-mongo, dotenv
+    axios to send ajax request
+    install notification library noty
+Create login page with route
+Create register page with route
+Build register CRUD
