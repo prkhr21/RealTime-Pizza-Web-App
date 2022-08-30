@@ -10,6 +10,7 @@ const MongoDbStore = require('connect-mongo')
 const session = require('express-session')
 const flash = require('express-flash')
 const passport = require('passport')
+const Emitter = require('events')
 
 // Database connection
 const url = 'mongodb://localhost/realtime_pizza';
@@ -32,6 +33,10 @@ app.use(express.static('public'))
 app.use(flash())
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
+
+// Event emitter
+const eventEmitter = new Emitter()
+app.set('eventEmitter',eventEmitter)
 
 // Session config
 app.use(session({
@@ -67,6 +72,12 @@ app.set('view engine', 'ejs')
 
 require('./routes/web')(app)
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`listning on port ${PORT}`)
+})
+
+// Socket
+const io = require('socket.io')(server)
+io.on('connection', () => {
+    
 })

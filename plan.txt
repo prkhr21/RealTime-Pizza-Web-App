@@ -23,3 +23,8 @@ Build register CRUD
     dependencies express-flash express-session dotenv
 Build login using passport
     Install dependencies passport passport-local express-session
+Create order controller and link it in server.js
+Place order functionality
+Show all my orders
+Show orders on admin page
+Change order status
